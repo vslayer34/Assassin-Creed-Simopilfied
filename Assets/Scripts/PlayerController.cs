@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     Rigidbody rb;
 
-    float speed = 5.0f;
+    float speed = 100.0f;
 
     [SerializeField]
     InputSC inputValues;
@@ -19,13 +19,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Move();
+        Walk();
     }
 
 
-    void Move()
+    void Walk()
     {
         Vector3 movementDirection = new Vector3(inputValues.playerMovement.x, 0.0f, inputValues.playerMovement.y);
-        rb.MovePosition(transform.position + movementDirection * speed * Time.deltaTime);
+        rb.velocity = movementDirection * speed * Time.deltaTime;
+
+        Debug.Log(rb.velocity.z);
     }
 }
