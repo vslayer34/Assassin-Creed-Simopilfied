@@ -17,5 +17,6 @@ public class GetInputs : MonoBehaviour
     void Update()
     {
         playerValues.playerMovement = playerInput.Player.Movement.ReadValue<Vector2>();
+        playerValues.mousePosition = playerInput.Player.Look.ReadValue<Vector2>();
     }
 }
