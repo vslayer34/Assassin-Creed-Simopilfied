@@ -49,8 +49,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Constraints: 80
+  m_CollisionDetection: 1
 --- !u!136 &6452458247428307733
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5277b567b9285684994cdccaeb8659b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputValues: {fileID: 11400000, guid: 4ed943bd1c80a774ca2cd06cd563df4d, type: 2}
 --- !u!1001 &6452458247166336206
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -144,8 +145,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: Erika Archer
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: b8cf086afaba17d438ceb5de2ad7d2c1,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ac43decd0119b764f999282d3b394b82, type: 2}
+    - target: {fileID: 5866666021909216657, guid: b8cf086afaba17d438ceb5de2ad7d2c1,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8cf086afaba17d438ceb5de2ad7d2c1, type: 3}
+--- !u!1 &6145959143265968543 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b8cf086afaba17d438ceb5de2ad7d2c1,
+    type: 3}
+  m_PrefabInstance: {fileID: 6452458247166336206}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &560179796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6145959143265968543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16a13df526cbe2e45b07b7a2a4674076, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controllerScript: {fileID: 8010372407302586931}
 --- !u!4 &6773701824250575653 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b8cf086afaba17d438ceb5de2ad7d2c1,
