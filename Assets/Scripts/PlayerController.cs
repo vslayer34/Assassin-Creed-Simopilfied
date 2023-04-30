@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 
 
     float speed = 100.0f;
-    float rotationSpeed = 10.0f;
+    float rotationSpeed = 5.0f;
 
     [SerializeField]
     InputSC inputValues;
@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Walk();
+        //AlignCameraWithPlayer();
+
     }
 
 
@@ -40,7 +42,6 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Walk()
     {
-        Debug.Log(inputValues.playerMovement);
         Vector3 movementDirection = new Vector3(inputValues.playerMovement.x, rb.velocity.y, inputValues.playerMovement.y);
 
         // apply the rigid body velocity to the local transform
@@ -55,13 +56,21 @@ public class PlayerController : MonoBehaviour
     {
         if (inputValues.playerMovement != Vector2.zero)
         {
-            //float targetAngle = Mathf.Atan2(inputValues.mousePosition.x, inputValues.mousePosition.y) * Mathf.Rad2Deg * followCamera.transform.eulerAngles.y;
+            //float targetAngle = Mathf.Atan2(inputValues.mousePosition.x, inputValues.mousePosition.y) * Mathf.Rad2Deg * -followCamera.transform.eulerAngles.y;
             //Quaternion targetRotation = Quaternion.Euler(0.0f, targetAngle, 0.0f);
-            //transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
+            //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
 
-            Quaternion targetRotation = Quaternion.FromToRotation(transform.forward, followCamera.transform.forward);
-            targetRotation.y = 0.0f;
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation.normalized, Time.deltaTime * rotationSpeed);
+            // take the rotaion of the camera
+            Quaternion cameraRotation = followCamera.transform.rotation;
+
+            // adjust the rotation of the player transform
+            // and set all other rotations exept the y to zero
+            Quaternion targetRotaion = Quaternion.Slerp(transform.rotation, cameraRotation, Time.deltaTime * rotationSpeed);
+            targetRotaion.Set(0.0f, targetRotaion.y, 0.0f, targetRotaion.w);
+
+            // apply the rotation to the player game object
+            transform.rotation = targetRotaion;
+            
         }
     }
 }
