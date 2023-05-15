@@ -13,6 +13,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     InputSC inputValues;
+    [SerializeField]
+    PlayerStateSC playerState;
+    [SerializeField]
+    PlayerAnimations playerAnimations;
 
     void Start()
     {
@@ -32,8 +36,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Walk();
-        //AlignCameraWithPlayer();
-
     }
 
 
@@ -46,6 +48,12 @@ public class PlayerController : MonoBehaviour
 
         // apply the rigid body velocity to the local transform
         rb.velocity = transform.TransformDirection(movementDirection * speed * Time.deltaTime);
+
+        // collect rigid body velocity variables
+        playerState.velocityX = rb.velocity.x;
+        playerState.velocityZ = rb.velocity.z;
+
+        playerAnimations.PlayLowAnimation();
     }
 
 
